@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山王株式会社 協力業者ポータル</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0D2137;
+  --navy-mid: #1A3A52;
+  --navy-light: #2B5278;
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --cream: #F8F5EF;
+  --white: #FFFFFF;
+  --gray-100: #F2EFE9;
+  --gray-200: #E0DDD6;
+  --gray-400: #9A9690;
+  --gray-600: #5C5A56;
+  --gray-800: #2E2C2A;
+  --green-bg: #EAF4EE;
+  --green-border: #4CAF76;
+  --green-text: #1D6B3A;
+  --text-main: #1C1B19;
+  --text-sub: #5C5A56;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--cream);
+  color: var(--text-main);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* ── ヘッダー ── */
+header {
+  background: var(--navy);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  background: var(--gold);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--navy);
+  flex-shrink: 0;
+}
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.logo-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.05em;
+}
+.logo-sub {
+  font-size: 10px;
+  color: var(--gold-light);
+  letter-spacing: 0.1em;
+  font-weight: 300;
+}
+nav { display: flex; gap: 4px; }
+nav a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-weight: 400;
+}
+nav a:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+nav a.active { background: var(--gold); color: var(--navy); font-weight: 700; }
+
+/* ── ページ管理 ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── ヒーロー（ホーム） ── */
+.hero {
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-light) 100%);
+  padding: 80px 24px 72px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 200px; height: 200px;
+  border: 1px solid rgba(201,168,76,0.1);
+  border-radius: 50%;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(201,168,76,0.15);
+  border: 1px solid rgba(201,168,76,0.4);
+  color: var(--gold-light);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  padding: 4px 16px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+.hero h1 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(24px, 4vw, 38px);
+  color: var(--white);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.hero p {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  max-width: 480px;
+  margin: 0 auto 32px;
+  font-weight: 300;
+}
+.hero-cards {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.hero-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 20px 24px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 180px;
+  flex-shrink: 0;
+}
+.hero-card:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(201,168,76,0.4);
+  transform: translateY(-2px);
+}
+.hero-card-icon {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.hero-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.hero-card-desc {
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.5;
+}
+
+/* ── セクション共通 ── */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 24px;
+}
+.section-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold), transparent);
+}
+.section-sub {
+  font-size: 13px;
+  color: var(--text-sub);
+  margin-bottom: 28px;
+  font-weight: 300;
+}
+
+/* ── お知らせ（ホーム抜粋） ── */
+.news-list { display: flex; flex-direction: column; gap: 0; }
+.news-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--gray-200);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.news-item:first-child { border-top: 1px solid var(--gray-200); }
+.news-meta { display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; width: 90px; }
+.news-date { font-size: 12px; color: var(--text-sub); font-weight: 300; }
+.news-tag {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-weight: 500;
+  display: inline-block;
+  width: fit-content;
+}
+.tag-important { background: #FEE2E2; color: #991B1B; }
+.tag-notice { background: #DBEAFE; color: #1E40AF; }
+.tag-info { background: var(--green-bg); color: var(--green-text); }
+.news-title { font-size: 14px; color: var(--text-main); line-height: 1.6; }
+.news-more {
+  text-align: right;
+  margin-top: 16px;
+}
+.btn-text {
+  font-size: 13px;
+  color: var(--navy-light);
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 0.2s;
+}
+.btn-text:hover { gap: 8px; }
+
+/* ── ページヘッダー ── */
+.page-header {
+  background: var(--navy);
+  padding: 40px 24px 36px;
+  text-align: center;
+}
+.page-header h2 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.page-header p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 300;
+}
+
+.dl-category-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--navy-light);
+  padding: 6px 16px;
+  border-radius: 5px;
+  margin: 32px 0 10px;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+.accordion-toggle { cursor: pointer; user-select: none; }
+.accordion-toggle:hover { opacity: 0.92; }
+.accordion-arrow { font-size: 11px; color: rgba(255,255,255,0.7); transition: transform 0.2s; display: inline-block; }
+.accordion-toggle.open .accordion-arrow { transform: rotate(180deg); }
+.accordion-body { display: none; }
+.accordion-body.open { display: block; }
+
+/* ── 書類ダウンロード ── */
+.cat-block { margin-bottom: 36px; }
+.cat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  background: var(--navy);
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 0;
+}
+.cat-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.03em;
+}
+.cat-count {
+  font-size: 11px;
+  background: rgba(201,168,76,0.25);
+  color: var(--gold-light);
+  padding: 2px 9px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+.cat-body {
+  border: 1px solid var(--gray-200);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  background: var(--white);
+}
+.file-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--gray-100);
+  gap: 12px;
+  transition: background 0.15s;
+}
+.file-row:last-child { border-bottom: none; }
+.file-row:hover { background: var(--gray-100); }
+.file-info { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+.file-num {
+  font-size: 11px;
+  color: var(--gray-400);
+  width: 22px;
+  text-align: right;
+  flex-shrink: 0;
+  font-weight: 300;
+}
+.file-name { font-size: 14px; color: var(--text-main); line-height: 1.4; }
+.file-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.ext-badge {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.ext-xlsx { background: #E2F0D9; color: #375623; }
+.ext-docx { background: #DAE3F3; color: #1F3864; }
+.ext-pdf  { background: #FCE4D6; color: #833C0B; }
+.ext-unknown { background: var(--gray-100); color: var(--gray-400); border: 1px solid var(--gray-200); }
+.dl-btn {
+  font-size: 12px;
+  color: var(--navy-light);
+  background: var(--cream);
+  border: 1px solid var(--gray-200);
+  border-radius: 5px;
+  padding: 4px 12px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.dl-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.empty-cat {
+  padding: 24px 18px;
+  font-size: 13px;
+  color: var(--gray-400);
+  font-style: italic;
+  text-align: center;
+  background: var(--gray-100);
+}
+
+/* ── お知らせページ ── */
+.news-page-list { display: flex; flex-direction: column; gap: 0; }
+.news-page-item {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+.news-page-item:first-child { border-top: 1px solid var(--gray-200); }
+.news-page-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+.news-page-date { font-size: 12px; color: var(--text-sub); font-weight: 300; }
+.news-page-title { font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
+.news-page-body { font-size: 14px; color: var(--text-sub); line-height: 1.8; }
+.empty-news {
+  text-align: center;
+  padding: 60px 24px;
+  color: var(--gray-400);
+  font-size: 14px;
+}
+
+/* ── 取扱商品 ── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+.product-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+.product-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.product-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-400);
+  font-size: 13px;
+}
+.product-body { padding: 14px 16px; }
+.product-cat {
+  font-size: 10px;
+  color: var(--navy-light);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+.product-name { font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
+.product-desc { font-size: 12px; color: var(--text-sub); line-height: 1.6; }
+
+/* ── お問い合わせ ── */
+.contact-wrap {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 32px;
+  align-items: start;
+}
+@media (max-width: 680px) { .contact-wrap { grid-template-columns: 1fr; } }
+.contact-info { display: flex; flex-direction: column; gap: 16px; }
+.contact-info-card {
+  background: var(--navy);
+  border-radius: 10px;
+  padding: 20px;
+  color: var(--white);
+}
+.contact-info-label { font-size: 11px; color: var(--gold-light); letter-spacing: 0.1em; margin-bottom: 6px; font-weight: 300; }
+.contact-info-val { font-size: 14px; color: var(--white); font-weight: 500; }
+.form-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 28px;
+}
+.form-group { margin-bottom: 20px; }
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+.form-label .req {
+  font-size: 10px;
+  color: #DC2626;
+  margin-left: 4px;
+  font-weight: 400;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text-main);
+  background: var(--white);
+  transition: border-color 0.15s;
+  outline: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--navy-light);
+  box-shadow: 0 0 0 3px rgba(26,58,82,0.08);
+}
+.form-textarea { resize: vertical; min-height: 120px; }
+.btn-submit {
+  width: 100%;
+  padding: 13px;
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Noto Sans JP', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s;
+  letter-spacing: 0.05em;
+}
+.btn-submit:hover { background: var(--navy-light); }
+
+/* ── フッター ── */
+footer {
+  background: var(--gray-800);
+  padding: 32px 24px;
+  text-align: center;
+  margin-top: 40px;
+}
+.footer-logo {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 16px;
+  color: var(--white);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.footer-sub { font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 300; }
+
+/* ── レスポンシブ ── */
+@media (max-width: 720px) {
+  nav { display: none; }
+  .hero-card { width: 140px; }
+  .hero h1 { font-size: 22px; }
+  .contact-wrap { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .hero-cards { flex-wrap: wrap; }
+  .hero-card { width: calc(50% - 6px); }
+}
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#" onclick="showPage('home')">
+      <div class="logo-mark">山</div>
+      <div class="logo-text">
+        <span class="logo-name">山王株式会社</span>
+        <span class="logo-sub">SANNO CO., LTD. — 協力業者ポータル</span>
+      </div>
+    </a>
+    <nav>
+      <a href="#" class="active" id="nav-home" onclick="showPage('home')">ホーム</a>
+      <a href="#" id="nav-download" onclick="showPage('download')">書類ダウンロード</a>
+      <a href="#" id="nav-news" onclick="showPage('news')">お知らせ</a>
+      <a href="#" id="nav-products" onclick="showPage('products')">取扱商品</a>
+      <a href="#" id="nav-contact" onclick="showPage('contact')">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ホームページ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-badge">PARTNER PORTAL</div>
+    <h1>山王株式会社<br>協力業者ポータル</h1>
+    <p>工事で使用する共通様式のダウンロード、お知らせの確認、取扱商品のご案内をこちらのページからご利用いただけます。</p>
+    <div class="hero-cards">
+      <div class="hero-card" onclick="showPage('download')">
+        <div class="hero-card-icon">📄</div>
+        <div class="hero-card-title">書類ダウンロード</div>
+        <div class="hero-card-desc">共通様式を<br>ダウンロード</div>
+      </div>
+      <div class="hero-card" onclick="showPage('news')">
+        <div class="hero-card-icon">📢</div>
+        <div class="hero-card-title">お知らせ</div>
+        <div class="hero-card-desc">通達・連絡事項を<br>確認する</div>
+      </div>
+      <div class="hero-card" onclick="showPage('products')">
+        <div class="hero-card-icon">📦</div>
+        <div class="hero-card-title">取扱商品</div>
+        <div class="hero-card-desc">山王の取扱商品を<br>紹介</div>
+      </div>
+      <div class="hero-card" onclick="showPage('contact')">
+        <div class="hero-card-icon">✉️</div>
+        <div class="hero-card-title">お問い合わせ</div>
+        <div class="hero-card-desc">ご連絡・ご質問は<br>こちら</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">最新のお知らせ</div>
+    <div class="section-sub">協力業者の皆さまへの通達・お知らせです</div>
+    <div class="news-list" id="home-news-list">
+      <!-- お知らせが追加されると自動表示 -->
+    </div>
+    <div id="home-news-empty" style="padding:32px 0; text-align:center; color:var(--gray-400); font-size:14px;">現在、お知らせはありません。</div>
+    <div class="news-more">
+      <a class="btn-text" onclick="showPage('news')">すべてのお知らせを見る →</a>
+    </div>
+  </div>
+</div>
+
+<!-- 書類ダウンロードページ -->
+<div class="page" id="page-download">
+  <div class="page-header">
+    <h2>書類ダウンロード</h2>
+    <p>ファイル名をクリックしてダウンロードしてください。各ファイルに含まれるシート名も確認できます。</p>
+  </div>
+  <div class="section">
+
+    <!-- ═══ グリーンファイル関連 ═══ -->
+    <div class="dl-category-label">グリーンファイル関連</div>
+
+    <!-- 施工体制台帳様式 -->
+    <div class="cat-block">
+      <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
+        <span class="cat-name">施工体制台帳様式</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="ext-badge ext-xlsx" style="font-size:10px;">xlsx</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="cat-body accordion-body">
+        <div class="file-row">
+          <div class="file-info" style="flex-direction:column;align-items:flex-start;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span class="ext-badge ext-xlsx">xlsx</span>
+              <span class="file-name" style="font-weight:500;">施工体制台帳様式.xlsx</span>
+            </div>
+            <div style="padding-left:4px;">
+              <span style="font-size:11px;color:var(--gray-400);margin-right:6px;">収録シート：</span>
+              <span style="font-size:12px;color:var(--text-sub);">施工体制台帳作成通知　／　再下請負通知書（変更届）　／　作業員名簿　／　施工体系図　／　外国人建設就労者現場入場届</span>
+            </div>
+          </div>
+          <div class="file-right"><a href="#" class="dl-btn">↓ ダウンロード</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 労働安全衛生に関する届出書 -->
+    <div class="cat-block">
+      <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
+        <span class="cat-name">労働安全衛生に関する届出書（様式集2024.8.1）</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="ext-badge ext-xlsx" style="font-size:10px;">xlsx</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="cat-body accordion-body">
+        <div class="file-row">
+          <div class="file-info" style="flex-direction:column;align-items:flex-start;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span class="ext-badge ext-xlsx">xlsx</span>
+              <span class="file-name" style="font-weight:500;">労働安全衛生に関する届出書（様式集2024.8.1）.xlsx</span>
+            </div>
+            <div style="padding-left:4px;">
+              <span style="font-size:11px;color:var(--gray-400);margin-right:6px;">収録シート：</span>
+              <span style="font-size:12px;color:var(--text-sub);">労働安全衛生に関する届出書　／　労務及び安全衛生管理に関する誓約書　／　工事安全衛生計画書　／　有資格者一覧（技能講習）　／　有資格者一覧（特別教育）　／　新規入場者届　／　移動式クレーン・車両系建設機械等使用届　／　有機溶剤・特定化学物質等持込使用届　／　工事・通勤用車両届　／　火気使用願　／　作業計画書（車両系建設機械）　／　作業計画書（コンクリートポンプ車）　／　作業計画書（移動式クレーン）　／　作業計画書（高所作業車）　／　作業計画書（解体用）</span>
+            </div>
+          </div>
+          <div class="file-right"><a href="#" class="dl-btn">↓ ダウンロード</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 送り出し教育資料関係 -->
+    <div class="cat-block">
+      <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
+        <span class="cat-name">送り出し教育資料関係</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="ext-badge ext-unknown" style="font-size:10px;">—</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="cat-body accordion-body">
+        <div class="file-row">
+          <div class="file-info" style="flex-direction:column;align-items:flex-start;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span class="ext-badge ext-unknown">—</span>
+              <span class="file-name" style="font-weight:500;">送り出し教育資料関係</span>
+            </div>
+            <div style="padding-left:4px;">
+              <span style="font-size:11px;color:var(--gray-400);margin-right:6px;">収録シート：</span>
+              <span style="font-size:12px;color:var(--text-sub);">送り出し教育資料　／　送り出し教育実施報告書　／　新規入場者教育　／　新規入場者届</span>
+            </div>
+          </div>
+          <div class="file-right"><a href="#" class="dl-btn">↓ ダウンロード</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 熱中症関連資料 ═══ -->
+    <div class="dl-category-label">熱中症関連資料</div>
+
+    <!-- 熱中症対応フロー -->
+    <div class="cat-block">
+      <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
+        <span class="cat-name">「熱中症」対応フロー記入用</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="ext-badge ext-unknown" style="font-size:10px;">—</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="cat-body accordion-body">
+        <div class="file-row">
+          <div class="file-info">
+            <span class="ext-badge ext-unknown">—</span>
+            <span class="file-name">「熱中症」対応フロー記入用</span>
+          </div>
+          <div class="file-right"><a href="#" class="dl-btn">↓ ダウンロード</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 熱中症ポスター -->
+    <div class="cat-block">
+      <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
+        <span class="cat-name">熱中症ポスター</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="ext-badge ext-unknown" style="font-size:10px;">—</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="cat-body accordion-body">
+        <div class="file-row">
+          <div class="file-info">
+            <span class="ext-badge ext-unknown">—</span>
+            <span class="file-name">熱中症ポスター</span>
+          </div>
+          <div class="file-right"><a href="#" class="dl-btn">↓ ダウンロード</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 熱中症対策自己管理チェックシート -->
+    <div class="cat-block">
+      <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
+        <span class="cat-name">熱中症対策自己管理チェックシート</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="ext-badge ext-unknown" style="font-size:10px;">—</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="cat-body accordion-body">
+        <div class="file-row">
+          <div class="file-info" style="flex-direction:column;align-items:flex-start;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span class="ext-badge ext-unknown">—</span>
+              <span class="file-name" style="font-weight:500;">熱中症対策自己管理チェックシート</span>
+            </div>
+            <div style="padding-left:4px;">
+              <span style="font-size:11px;color:var(--gray-400);margin-right:6px;">収録シート：</span>
+              <span style="font-size:12px;color:var(--text-sub);">新規入場時　／　日常管理</span>
+            </div>
+          </div>
+          <div class="file-right"><a href="#" class="dl-btn">↓ ダウンロード</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 熱中症防止対策計画書 -->
+    <div class="cat-block">
+      <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
+        <span class="cat-name">熱中症防止対策計画書</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="ext-badge ext-docx" style="font-size:10px;">docx</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="cat-body accordion-body">
+        <div class="file-row">
+          <div class="file-info">
+            <span class="ext-badge ext-docx">docx</span>
+            <span class="file-name">熱中症防止対策計画書.docx</span>
+          </div>
+          <div class="file-right"><a href="#" class="dl-btn">↓ ダウンロード</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 点検関連 ═══ -->
+    <div class="dl-category-label">点検関連</div>
+
+    <!-- 点検表 -->
+    <div class="cat-block">
+      <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
+        <span class="cat-name">点検表</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="ext-badge ext-unknown" style="font-size:10px;">—</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="cat-body accordion-body">
+        <div class="file-row">
+          <div class="file-info" style="flex-direction:column;align-items:flex-start;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span class="ext-badge ext-unknown">—</span>
+              <span class="file-name" style="font-weight:500;">点検表</span>
+            </div>
+            <div style="padding-left:4px;">
+              <span style="font-size:11px;color:var(--gray-400);margin-right:6px;">収録シート：</span>
+              <span style="font-size:12px;color:var(--text-sub);">不安全行動　／　墜落・転落　／　建設機械・クレーン　／　火災事項防止　／　熱中症</span>
+            </div>
+          </div>
+          <div class="file-right"><a href="#" class="dl-btn">↓ ダウンロード</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 年末年始安全点検表 -->
+    <div class="cat-block">
+      <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
+        <span class="cat-name">年末年始安全点検表</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="ext-badge ext-unknown" style="font-size:10px;">—</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="cat-body accordion-body">
+        <div class="file-row">
+          <div class="file-info" style="flex-direction:column;align-items:flex-start;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span class="ext-badge ext-unknown">—</span>
+              <span class="file-name" style="font-weight:500;">年末年始安全点検表</span>
+            </div>
+            <div style="padding-left:4px;">
+              <span style="font-size:11px;color:var(--gray-400);margin-right:6px;">収録シート：</span>
+              <span style="font-size:12px;color:var(--text-sub);">不安全行動　／　墜落・転落　／　建設機械・クレーン</span>
+            </div>
+          </div>
+          <div class="file-right"><a href="#" class="dl-btn">↓ ダウンロード</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 足場種類別チェックリスト -->
+    <div class="cat-block">
+      <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
+        <span class="cat-name">足場種類別チェックリスト</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="ext-badge ext-docx" style="font-size:10px;">docx</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="cat-body accordion-body">
+        <div class="file-row">
+          <div class="file-info">
+            <span class="ext-badge ext-docx">docx</span>
+            <span class="file-name">足場種類別チェックリスト.docx</span>
+          </div>
+          <div class="file-right"><a href="#" class="dl-btn">↓ ダウンロード</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 参考　作業手順書 ═══ -->
+    <div class="dl-category-label">参考　作業手順書</div>
+
+    <div class="cat-block">
+      <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
+        <span class="cat-name">作業手順書（18種類）</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="ext-badge ext-unknown" style="font-size:10px;">—</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="cat-body accordion-body">
+        <div class="file-row"><div class="file-info"><span class="file-num">1</span><span class="file-name">クサビ式(先行手摺型)足場組立解体作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">2</span><span class="file-name">ゴンドラ運転作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">3</span><span class="file-name">シート防水作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">4</span><span class="file-name">シーリング作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">5</span><span class="file-name">トーチ工法防水作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">6</span><span class="file-name">移動式クレーンの運転作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">7</span><span class="file-name">外部足場使用時の安全作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">8</span><span class="file-name">外壁高圧洗浄作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">9</span><span class="file-name">巻上機（ウインチ）運転作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">10</span><span class="file-name">脚立足場使用作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">11</span><span class="file-name">玉掛け作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">12</span><span class="file-name">高所作業車運転作業手順書(作業計画・指示)</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">13</span><span class="file-name">自由研削砥石運転作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">14</span><span class="file-name">積載型トラッククレーン(ユニック)の作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">15</span><span class="file-name">単独脚立使用作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">16</span><span class="file-name">単独立馬使用作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">17</span><span class="file-name">塗膜防水作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">18</span><span class="file-name">枠組足場(手摺先行先送り型)組立解体工事　作業手順書</span></div><div class="file-right"><span class="ext-badge ext-unknown">—</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+      </div>
+    </div>
+
+    <!-- ═══ その他 ═══ -->
+    <div class="dl-category-label">その他</div>
+
+    <!-- 3大安全活動ポスター -->
+    <div class="cat-block">
+      <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
+        <span class="cat-name">3大安全活動ポスター</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="ext-badge ext-pdf" style="font-size:10px;">pdf</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="cat-body accordion-body">
+        <div class="file-row">
+          <div class="file-info">
+            <span class="ext-badge ext-pdf">pdf</span>
+            <span class="file-name">3大安全活動ポスター.pdf</span>
+          </div>
+          <div class="file-right"><a href="#" class="dl-btn">↓ ダウンロード</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 建設職長ノート -->
+    <div class="cat-block">
+      <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
+        <span class="cat-name">建設職長ノート</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="cat-count">12ファイル</span>
+          <span class="ext-badge ext-pdf" style="font-size:10px;">pdf</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="cat-body accordion-body">
+        <div class="file-row"><div class="file-info"><span class="file-num">1</span><span class="file-name">建設職長ノート 1号</span></div><div class="file-right"><span class="ext-badge ext-pdf">pdf</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">2</span><span class="file-name">建設職長ノート 2号</span></div><div class="file-right"><span class="ext-badge ext-pdf">pdf</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">3</span><span class="file-name">建設職長ノート 3号</span></div><div class="file-right"><span class="ext-badge ext-pdf">pdf</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">4</span><span class="file-name">建設職長ノート 4号</span></div><div class="file-right"><span class="ext-badge ext-pdf">pdf</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">5</span><span class="file-name">建設職長ノート 5号</span></div><div class="file-right"><span class="ext-badge ext-pdf">pdf</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">6</span><span class="file-name">建設職長ノート 6号</span></div><div class="file-right"><span class="ext-badge ext-pdf">pdf</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">7</span><span class="file-name">建設職長ノート 7号</span></div><div class="file-right"><span class="ext-badge ext-pdf">pdf</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">8</span><span class="file-name">建設職長ノート 8号</span></div><div class="file-right"><span class="ext-badge ext-pdf">pdf</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">9</span><span class="file-name">建設職長ノート 9号</span></div><div class="file-right"><span class="ext-badge ext-pdf">pdf</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">10</span><span class="file-name">建設職長ノート 10号</span></div><div class="file-right"><span class="ext-badge ext-pdf">pdf</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">11</span><span class="file-name">建設職長ノート 11号</span></div><div class="file-right"><span class="ext-badge ext-pdf">pdf</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+        <div class="file-row"><div class="file-info"><span class="file-num">12</span><span class="file-name">建設職長ノート 12号</span></div><div class="file-right"><span class="ext-badge ext-pdf">pdf</span><a href="#" class="dl-btn">↓ ダウンロード</a></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- お知らせページ -->
+<div class="page" id="page-news">
+  <div class="page-header">
+    <h2>お知らせ・通達</h2>
+    <p>協力業者の皆さまへの通達・連絡事項を掲載しています</p>
+  </div>
+  <div class="section">
+    <div class="news-page-list" id="news-page-list"></div>
+    <div id="news-page-empty" class="empty-news">
+      現在、お知らせはありません。<br>
+      <span style="font-size:12px; color:var(--gray-400);">通達・連絡事項が発生した際に掲載します。</span>
+    </div>
+  </div>
+</div>
+
+<!-- 取扱商品ページ -->
+<div class="page" id="page-products">
+  <div class="page-header">
+    <h2>取扱商品</h2>
+    <p>山王株式会社が取り扱う商品のご案内です</p>
+  </div>
+  <div class="section">
+
+    <!-- 舗装補修材 -->
+    <div class="section-title">舗装補修材</div>
+    <div class="section-sub">道路・舗装の補修に使用する製品</div>
+    <div class="products-grid" style="margin-bottom:48px;">
+      <div class="product-card">
+        <div class="product-img" style="background:#FFF3E0; color:#E65100; font-size:32px; display:flex; align-items:center; justify-content:center;">🟠</div>
+        <div class="product-body">
+          <div class="product-cat">舗装補修材</div>
+          <div class="product-name">オレンジパッチ</div>
+          <div class="product-desc">VOCゼロの人と環境に優しい全天候型補修材</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#E8F5E9; color:#2E7D32; font-size:32px; display:flex; align-items:center; justify-content:center;">💪</div>
+        <div class="product-body">
+          <div class="product-cat">舗装補修材</div>
+          <div class="product-name">ストロングパッチ</div>
+          <div class="product-desc">段差補修材・新しいタイプのエポキシ系樹脂材</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#FFFDE7; color:#F57F17; font-size:32px; display:flex; align-items:center; justify-content:center;">🔥</div>
+        <div class="product-body">
+          <div class="product-cat">舗装補修材</div>
+          <div class="product-name">ゴールドパッチ</div>
+          <div class="product-desc">加熱合材として使用できるゴールドパッチ</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#F3E5F5; color:#6A1B9A; font-size:32px; display:flex; align-items:center; justify-content:center;">🐌</div>
+        <div class="product-body">
+          <div class="product-cat">舗装補修材</div>
+          <div class="product-name">カタツムリテープ</div>
+          <div class="product-desc">ひびわれに沿って貼るだけで簡単に補修ができるテープ</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#E3F2FD; color:#1565C0; font-size:32px; display:flex; align-items:center; justify-content:center;">🪣</div>
+        <div class="product-body">
+          <div class="product-cat">舗装補修材</div>
+          <div class="product-name">ジョイントクリート</div>
+          <div class="product-desc">超速硬化型コンクリート補修材</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#EFEBE9; color:#4E342E; font-size:32px; display:flex; align-items:center; justify-content:center;">🛣️</div>
+        <div class="product-body">
+          <div class="product-cat">舗装補修材</div>
+          <div class="product-name">アスファルトシート</div>
+          <div class="product-desc">舗装補修用アスファルトシート</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#E8F5E9; color:#1B5E20; font-size:32px; display:flex; align-items:center; justify-content:center;">🔩</div>
+        <div class="product-body">
+          <div class="product-cat">舗装補修材</div>
+          <div class="product-name">ロードリペア</div>
+          <div class="product-desc">道路補修専用補修材</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#FBE9E7; color:#BF360C; font-size:32px; display:flex; align-items:center; justify-content:center;">🪨</div>
+        <div class="product-body">
+          <div class="product-cat">舗装補修材</div>
+          <div class="product-name">ロックモル</div>
+          <div class="product-desc">舗装補修用モルタル材</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#F1F8E9; color:#33691E; font-size:32px; display:flex; align-items:center; justify-content:center;">🪵</div>
+        <div class="product-body">
+          <div class="product-cat">舗装補修材</div>
+          <div class="product-name">木ライト</div>
+          <div class="product-desc">軽量タイプの舗装補修材</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 橋梁補修 -->
+    <div class="section-title">橋梁補修</div>
+    <div class="section-sub">橋梁ジョイント・伸縮装置の補修・交換</div>
+    <div class="products-grid" style="margin-bottom:48px;">
+      <div class="product-card">
+        <div class="product-img" style="background:#E3F2FD; color:#0D47A1; font-size:32px; display:flex; align-items:center; justify-content:center;">🌉</div>
+        <div class="product-body">
+          <div class="product-cat">橋梁補修</div>
+          <div class="product-name">MMジョイントDS型</div>
+          <div class="product-desc">特殊バインダーを使用した橋梁ジョイント工法。弊社はDSブラウン社（米国）と独占的販売権契約を結んだ日本で唯一の販売代理店です。</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#E8F5E9; color:#1B5E20; font-size:32px; display:flex; align-items:center; justify-content:center;">🔗</div>
+        <div class="product-body">
+          <div class="product-cat">橋梁補修</div>
+          <div class="product-name">ゴム劣化取替工法（SMジョイント）</div>
+          <div class="product-desc">伸縮装置目的補修工法。後打ちコンクリートを撤去せず老朽化したゴムのみを補修することで、安価で高性能な防水を実現しました。</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#FFF8E1; color:#E65100; font-size:32px; display:flex; align-items:center; justify-content:center;">⚖️</div>
+        <div class="product-body">
+          <div class="product-cat">橋梁補修</div>
+          <div class="product-name">ジョイント和（なごみ）</div>
+          <div class="product-desc">荷重分散鋼板を設けることにより、既設床版に荷重を分散させることができる、床版に優しい荷重分散型ジョイントです。</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#EFEBE9; color:#3E2723; font-size:32px; display:flex; align-items:center; justify-content:center;">🔄</div>
+        <div class="product-body">
+          <div class="product-cat">橋梁補修</div>
+          <div class="product-name">ジョイント繋（つなぎ）</div>
+          <div class="product-desc">橋梁地覆隙間部からの雨水などの浸入防止を目的とした隙間止水材。復元性の高いゴムと接着性の高いゴムとの複合構造。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- その他工法・製品 -->
+    <div class="section-title">その他工法・製品</div>
+    <div class="section-sub">インフラ補修・メンテナンスに関わる各種工法</div>
+    <div class="products-grid" style="margin-bottom:24px;">
+      <div class="product-card">
+        <div class="product-img" style="background:#E8EAF6; color:#283593; font-size:32px; display:flex; align-items:center; justify-content:center;">💉</div>
+        <div class="product-body">
+          <div class="product-cat">その他工法・製品</div>
+          <div class="product-name">圧力調整注入工法 SAPIS</div>
+          <div class="product-desc">長寿命化に貢献するひび割れ補修工法です。補修材料の注入圧力を低圧から高圧まで自由に調整できるので、ひび割れの深部から表面部まで的確に注入できます。</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#E0F2F1; color:#004D40; font-size:32px; display:flex; align-items:center; justify-content:center;">🔆</div>
+        <div class="product-body">
+          <div class="product-cat">その他工法・製品</div>
+          <div class="product-name">クリーンレーザー工法</div>
+          <div class="product-desc">橋梁をはじめとしたインフラ鋼構造物の塗装剥離・錆等の除去において、高出力のレーザー光線が旧塗膜・鉄サビ部分を瞬時に除去し、微粒子を吸引する次世代のクリーニング工法です。</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#FCE4EC; color:#880E4F; font-size:32px; display:flex; align-items:center; justify-content:center;">🛡️</div>
+        <div class="product-body">
+          <div class="product-cat">その他工法・製品</div>
+          <div class="product-name">SMリスガード</div>
+          <div class="product-desc">SMリスガードは、簡単に目地やひび割れの補修をできる補修材です。</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#EDE7F6; color:#4527A0; font-size:32px; display:flex; align-items:center; justify-content:center;">💎</div>
+        <div class="product-body">
+          <div class="product-cat">その他工法・製品</div>
+          <div class="product-name">クリスタル・ジュエリー工法</div>
+          <div class="product-desc">錆進行抑制防水型蛍光クリア樹脂防食塗装システムです。</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#212121; color:#E040FB; font-size:24px; display:flex; align-items:center; justify-content:center; font-weight:700; letter-spacing:1px;">ULT</div>
+        <div class="product-body">
+          <div class="product-cat">その他工法・製品</div>
+          <div class="product-name">ULT LASER</div>
+          <div class="product-desc">最高スペックの次世代レーザー洗浄機。サビ・黒皮・油膜・塗料をスピーディーかつ高精度に除去。業界最高スペックのパワーで作業効率を大幅に向上。</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:8px; font-size:13px; color:var(--text-sub); text-align:center;">※ 商品の詳細・価格についてはお問い合わせページよりご連絡ください。</p>
+  </div>
+</div>
+
+<!-- お問い合わせページ -->
+<div class="page" id="page-contact">
+  <div class="page-header">
+    <h2>お問い合わせ</h2>
+    <p>ご質問・ご連絡はこちらからお送りください</p>
+  </div>
+  <div class="section">
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <div class="contact-info-card">
+          <div class="contact-info-label">会社名</div>
+          <div class="contact-info-val">山王株式会社</div>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-info-label">受付時間</div>
+          <div class="contact-info-val">平日 9:00 〜 17:00</div>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-info-label">備考</div>
+          <div class="contact-info-val" style="font-size:13px; font-weight:300; line-height:1.7;">フォームからお送りいただいた内容は、担当者が確認次第ご返答いたします。</div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="form-group">
+          <label class="form-label">会社名<span class="req">必須</span></label>
+          <input type="text" class="form-input" placeholder="例：○○建設株式会社">
+        </div>
+        <div class="form-group">
+          <label class="form-label">担当者名<span class="req">必須</span></label>
+          <input type="text" class="form-input" placeholder="例：山田 太郎">
+        </div>
+        <div class="form-group">
+          <label class="form-label">件名<span class="req">必須</span></label>
+          <input type="text" class="form-input" placeholder="例：書類について">
+        </div>
+        <div class="form-group">
+          <label class="form-label">お問い合わせ内容<span class="req">必須</span></label>
+          <textarea class="form-textarea" placeholder="お問い合わせ内容をご記入ください。"></textarea>
+        </div>
+        <button class="btn-submit" onclick="submitForm()">送信する</button>
+        <p style="font-size:11px; color:var(--gray-400); margin-top:12px; text-align:center;">※ このフォームはデモ表示です。実際の送信にはGoogle フォームを埋め込んでください。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- フッター -->
+<footer>
+  <div class="footer-logo">山王株式会社</div>
+  <div class="footer-sub">協力業者ポータル — このサイトのURLは関係者のみに共有してください</div>
+</footer>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+  return false;
+}
+
+function toggleAccordion(header) {
+  header.classList.toggle('open');
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+// お知らせデータ（追加するときはここに記入）
+const newsData = [
+  // 例：
+  // { date: '2025年4月1日', tag: 'important', tagLabel: '重要', title: '安全管理に関する通達', body: '本文をここに入力してください。' },
+  // { date: '2025年3月15日', tag: 'notice', tagLabel: 'お知らせ', title: '書類様式の更新について', body: '本文をここに入力してください。' },
+];
+
+function renderNews() {
+  const homeList = document.getElementById('home-news-list');
+  const homeEmpty = document.getElementById('home-news-empty');
+  const pageList = document.getElementById('news-page-list');
+  const pageEmpty = document.getElementById('news-page-empty');
+
+  if (newsData.length === 0) {
+    homeEmpty.style.display = 'block';
+    pageEmpty.style.display = 'block';
+    return;
+  }
+
+  homeEmpty.style.display = 'none';
+  pageEmpty.style.display = 'none';
+
+  const recent = newsData.slice(0, 3);
+  homeList.innerHTML = recent.map(n => `
+    <div class="news-item" onclick="showPage('news')">
+      <div class="news-meta">
+        <span class="news-date">${n.date}</span>
+        <span class="news-tag tag-${n.tag}">${n.tagLabel}</span>
+      </div>
+      <span class="news-title">${n.title}</span>
+    </div>
+  `).join('');
+
+  pageList.innerHTML = newsData.map(n => `
+    <div class="news-page-item">
+      <div class="news-page-header">
+        <span class="news-date">${n.date}</span>
+        <span class="news-tag tag-${n.tag}">${n.tagLabel}</span>
+      </div>
+      <div class="news-page-title">${n.title}</div>
+      <div class="news-page-body">${n.body}</div>
+    </div>
+  `).join('');
+}
+
+function submitForm() {
+  alert('※ デモ表示です。実際の送信にはGoogle フォームを埋め込んでください。');
+}
+
+renderNews();
+</script>
+</body>
+</html>
