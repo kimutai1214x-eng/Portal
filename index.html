@@ -644,10 +644,62 @@ footer {
 .footer-sub { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 300; }
 
 /* ── レスポンシブ ── */
+/* ── ハンバーガーメニュー ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+.hamburger:hover { background: rgba(255,255,255,0.1); }
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: all 0.25s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 68px;
+  left: 0;
+  right: 0;
+  background: var(--green-dark);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  z-index: 99;
+  padding: 12px 16px 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.mobile-menu.open { display: block; }
+.mobile-menu a {
+  display: block;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 16px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.15s;
+  font-weight: 400;
+}
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+.mobile-menu a.active { background: var(--white); color: var(--green-dark); font-weight: 700; }
+
 @media (max-width: 720px) {
   nav { display: none; }
+  .hamburger { display: flex; }
   .hero-card { width: 140px; }
-  .hero h1 { font-size: 22px; }
+  .hero h1 { font-size: 24px; }
   .contact-wrap { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
@@ -671,14 +723,26 @@ footer {
       <a href="#" id="nav-zerosai" onclick="showPage('zerosai')">ゼロ災会議</a>
       <a href="#" id="nav-products" onclick="showPage('products')">取扱商品</a>
     </nav>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </header>
+
+<!-- モバイルメニュー -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#" class="active" id="mnav-home" onclick="showPage('home');closeMenu()">🏠 ホーム</a>
+  <a href="#" id="mnav-download" onclick="showPage('download');closeMenu()">📄 書類ダウンロード</a>
+  <a href="#" id="mnav-news" onclick="showPage('news');closeMenu()">📢 お知らせ</a>
+  <a href="#" id="mnav-zerosai" onclick="showPage('zerosai');closeMenu()">🤝 ゼロ災会議</a>
+  <a href="#" id="mnav-products" onclick="showPage('products');closeMenu()">📦 取扱商品</a>
+</div>
 
 <!-- ホームページ -->
 <div class="page active" id="page-home">
   <div class="hero">
     <div class="hero-badge">PARTNER PORTAL</div>
-    <h1>山王株式会社<br>協力業者ポータル</h1>
+    <h1>山王株式会社<br>協力業者様専用ポータル</h1>
     <p>共通様式のダウンロード、お知らせの確認、取扱商品のご案内を<br>こちらのページからご利用いただけます。</p>
     <div class="hero-cards">
       <div class="hero-card" onclick="showPage('download')">
@@ -1325,10 +1389,25 @@ footer {
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll('.mobile-menu a').forEach(a => a.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
   document.getElementById('nav-' + id).classList.add('active');
+  const mnav = document.getElementById('mnav-' + id);
+  if (mnav) mnav.classList.add('active');
   window.scrollTo(0, 0);
   return false;
+}
+
+function toggleMenu() {
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('mobile-menu');
+  hamburger.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+
+function closeMenu() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobile-menu').classList.remove('open');
 }
 
 function toggleAccordion(header) {
