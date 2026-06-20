@@ -1150,6 +1150,27 @@ footer {
 
     <div class="cat-block">
       <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
+        <span class="cat-name">🚜 持込機械受理様式</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="ext-badge ext-xlsx">xlsx</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="cat-body accordion-body">
+        <div class="file-row">
+          <div class="file-info">
+            <div class="file-info-top">
+              <span class="ext-badge ext-xlsx">xlsx</span>
+              <span class="file-name">持込機械受理証様式.xlsx</span>
+            </div>
+          </div>
+          <div class="file-right"><a href="https://docs.google.com/spreadsheets/d/14Fv3zINBbq9RlGv40ovLnyQJ0PtPUPXU/edit?usp=drive_link&ouid=104871874959237792623&rtpof=true&sd=true" target="_blank" class="dl-btn">⬇ ダウンロード</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-header accordion-toggle" onclick="toggleAccordion(this)">
         <span class="cat-name">🪧 3大安全活動ポスター</span>
         <div style="display:flex;align-items:center;gap:8px;">
           <span class="ext-badge ext-pdf">pdf</span>
@@ -1547,6 +1568,14 @@ function searchDocs(q) {
 // お知らせデータ（追加するときはここに記入）
 const newsData = [
   {
+    date: '2026年6月20日',
+    tag: 'info',
+    tagLabel: 'お知らせ',
+    title: '第70回ゼロ災会議資料を公開しました',
+    body: `令和8年6月20日（土）開催の第70回ゼロ災会議資料をアップロードしました。<br><br>
+「ゼロ災会議」ページの会議資料ダウンロードよりダウンロードしてください。`
+  },
+  {
     date: '2026年5月19日',
     tag: 'important',
     tagLabel: '重要',
@@ -1629,6 +1658,7 @@ const zerosaiSchedule = [
 
 // 資料：{ month: '2025年5月', name: 'ゼロ災会議資料（2025年5月）', ext: 'pdf', href: '#' }
 const zerosaiFiles = [
+  { month: '令和8年6月（第70回）', name: '第70回ゼロ災会議資料（R8年6月20日）', ext: 'pdf', href: 'https://drive.google.com/file/d/18EozJnnwmXopXP-wSfYFxUqQJxs_8Vwk/view?usp=drive_link' },
   { month: '令和8年5月（第69回）', name: '第69回ゼロ災会議資料（R8年5月16日）', ext: 'pdf', href: 'https://drive.google.com/file/d/1oEhYed8j8m_Uvh0SFec6S5A5pz2mtR9g/view?usp=drive_link' },
 ];
 
